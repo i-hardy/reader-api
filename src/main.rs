@@ -2,6 +2,12 @@
 
 #[macro_use] extern crate rocket;
 #[macro_use] extern crate rocket_contrib;
+#[macro_use] extern crate serde_derive;
+#[macro_use] extern crate diesel;
+
+mod db;
+mod schema;
+mod models;
 
 use rocket_contrib::json::{JsonValue};
 
@@ -21,5 +27,6 @@ fn index() -> &'static str {
 fn main() {
   rocket::ignite().mount("/", routes![index])
     .register(catchers![not_found])
+    .attach(db::Conn::fairing())
     .launch();
 }
