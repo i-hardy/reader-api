@@ -1,0 +1,18 @@
+[package]
+name = "reader-api"
+version = "0.1.0"
+authors = ["Imogen Hardy <imogen.hardy@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = "1.0"
+serde_json = "1.0"
+serde_derive = "1.0"
+rocket = "0.4.2"
+rocket_contrib = { version = "0.4.2", default-features = false, features = ["json", "diesel_postgres_pool", "serve"] }
+diesel = "1.4.3"
+
+[dev-dependencies]
+cargo-husky = "1"

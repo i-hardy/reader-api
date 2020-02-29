@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  postgres-db:
+    image: postgres:9.6
+    restart: always
+    ports:
+      - '5433:5432'
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=reader_api
+    healthcheck:
+      #pg_isready is a PostgreSQL utility used for checking the readiness (connection status) of the db
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 5s
+      timeout: 30s
+      retries: 3
